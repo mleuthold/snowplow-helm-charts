@@ -1,0 +1,15 @@
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "snowplow-scala-stream-collector-kafka.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "snowplow-scala-stream-collector-kafka.name" . }}
+    helm.sh/chart: {{ include "snowplow-scala-stream-collector-kafka.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "snowplow-scala-stream-collector-kafka.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
