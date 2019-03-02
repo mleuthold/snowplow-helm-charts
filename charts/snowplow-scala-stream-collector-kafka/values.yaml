@@ -6,8 +6,7 @@
 replicaCount: 1
 
 image:
-  repository: >
-    snowplow-docker-registry.bintray.io/snowplow/scala-stream-collector-kafka
+  repository: snowplow-docker-registry.bintray.io/snowplow/scala-stream-collector-kafka
   tag: 0.15.0
   pullPolicy: IfNotPresent
 
