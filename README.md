@@ -1,18 +1,21 @@
 # snowplow-helm-charts
 
 # install build tool
-and other libraries
-
+and other libraries, e.g. docker
 ```bash
 pip3 install --user invoke docker
 ```
-
-# setup local Kubernetes
-
+list all build tasks
 ```bash
-shell/create-kubernetes-cluster.sh
+inv --list
 ```
 
+# setup local Kubernetes
+create local Kubernetes cluster
 ```bash
-shell/delete-kubernetes-cluster.sh
+inv start_local_environment
+```
+delete local Kubernetes cluster
+```bash
+inv stop_local_environment
 ```
