@@ -20,3 +20,7 @@ def install_tillerless(c):
 def deploy(c):
     c.run(
         """helm tiller run "default" -- helm upgrade --install --wait --timeout 600 --namespace "default" "collector" ./charts/snowplow-scala-stream-collector-kafka""")
+
+@task
+def lint(c):
+    c.run("./shell/lint-files.sh")

@@ -2,8 +2,11 @@
 
 set -xe
 
-# check all YAML files
-# yamllint -d relaxed .
+# check all YAML files, except helm charts, because ...
+yamllint -d "{extends: relaxed,  ignore: \"charts*\"}" .
+
+# helm has it's own linter
+helm lint charts/*
 
 # check all *.sh files
 while read -r file

@@ -1,0 +1,53 @@
+---
+# Default values for cp-kafka.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+## ------------------------------------------------------
+## Broker
+## ------------------------------------------------------
+cp-kafka:
+  brokers: 1
+  imageTag: 5.1.2
+  # heapOptions: "-Xms512M -Xmx512M"
+  persistence:
+    enabled: true
+    size: 50Mi
+  prometheus:
+    jmx:
+      enabled: false
+
+  configurationOverrides:
+    # "log.dirs": "/opt/kafka/data/logs"
+    "offsets.topic.replication.factor": "1"
+    "default.replication.factor": 1
+    "min.insync.replicas": 1
+    "auto.create.topics.enable": false
+
+## ------------------------------------------------------
+## Zookeeper
+## ------------------------------------------------------
+cp-zookeeper:
+  servers: 1
+  imageTag: 5.1.2
+  persistence:
+    enabled: false
+    # dataLogDirSize: 100Mi
+    # dataDirSize: 100Mi
+
+
+## ------------------------------------------------------
+## Other
+## ------------------------------------------------------
+cp-schema-registry:
+  enabled: false
+  prometheus:
+    jmx:
+      enabled: false
+
+cp-kafka-rest:
+  enabled: false
+cp-kafka-connect:
+  enabled: false
+cp-ksql-server:
+  enabled: false
