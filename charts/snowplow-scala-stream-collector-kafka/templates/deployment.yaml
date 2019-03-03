@@ -31,9 +31,13 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args: ['--config', '/snowplow/config/collector/config.hocon']
+          volumeMounts:
+            - name: config-volume
+              mountPath: /snowplow/config/collector
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 8080
               protocol: TCP
             - name: jmx
               containerPort: 1099
@@ -60,3 +64,7 @@ spec:
             failureThreshold: 3
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: config-volume
+          configMap:
+            name: {{ include "snowplow-scala-stream-collector-kafka.fullname" . }}
