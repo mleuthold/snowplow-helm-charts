@@ -3,7 +3,7 @@
 set -xe
 
 # check all YAML files, except helm charts, because ...
-yamllint -d "{extends: relaxed,  ignore: \"charts*\"}" .
+yamllint -d "{extends: relaxed,  ignore: \"charts/**/*\"}" .
 
 # helm has it's own linter
 helm lint charts/*
