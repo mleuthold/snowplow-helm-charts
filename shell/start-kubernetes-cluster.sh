@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-minikube start
+if minikube status | grep --fixed-strings --quiet "Running"; then
+	echo "Minikube is running";
+else
+	minikube start;
+fi
 
 kubectl config use-context minikube
 
